@@ -1,4 +1,4 @@
-package com.designpatterns.singleton.lazy;
+package com.designpatterns.singleton.lazy.threadsafe;
 
 public class ConfigurationManager {
     private static ConfigurationManager INSTANCE = null;
@@ -7,7 +7,7 @@ public class ConfigurationManager {
 
     }
 
-    public static ConfigurationManager getInstance() {
+    public static synchronized ConfigurationManager getInstance() {
         if (null == INSTANCE) {
             INSTANCE = new ConfigurationManager();
         }

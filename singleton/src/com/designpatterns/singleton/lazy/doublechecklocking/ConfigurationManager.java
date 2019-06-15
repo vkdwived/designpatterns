@@ -1,4 +1,4 @@
-package com.designpatterns.singleton.lazy;
+package com.designpatterns.singleton.lazy.doublechecklocking;
 
 public class ConfigurationManager {
     private static ConfigurationManager INSTANCE = null;
@@ -9,7 +9,11 @@ public class ConfigurationManager {
 
     public static ConfigurationManager getInstance() {
         if (null == INSTANCE) {
-            INSTANCE = new ConfigurationManager();
+            synchronized (ConfigurationManager.class) {
+                if (null == INSTANCE) {
+                    INSTANCE = new ConfigurationManager();
+                }
+            }
         }
         return INSTANCE;
     }
